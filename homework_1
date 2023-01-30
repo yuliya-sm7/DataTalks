@@ -1,0 +1,17 @@
+3 ----
+select count(*) from "green_tripdata_2019-01"
+where lpep_pickup_datetime::DATE = '2019-01-15' and lpep_dropoff_datetime::DATE = '2019-01-15'
+4 ----
+select lpep_pickup_datetime from "green_tripdata_2019-01"
+order by trip_distance desc
+limit 1
+5 ----
+select count(*) from "green_tripdata_2019-01"
+where lpep_pickup_datetime::DATE = '2019-01-01'
+and passenger_count = 3
+6 ----
+select tip_amount, b."Zone" from "green_tripdata_2019-01" as a
+join "taxi+_zone_lookup" as b
+ON a."DOLocationID" = b."LocationID"
+WHERE a."PULocationID" = 7
+order by tip_amount desc
