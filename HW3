@@ -1,0 +1,3 @@
+SELECT COUNT(*)
+FROM bindings.`fhv`
+WHERE DOlocationID = 0 and PUlocationID = 0;
