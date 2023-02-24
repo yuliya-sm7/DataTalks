@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 with trips_data as (
     select * from {{ ref('fact_trips') }}
 )

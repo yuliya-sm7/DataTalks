@@ -1,5 +1,3 @@
-{{ config(materialized='view') }}
-
 select
     -- identifiers
     {{ dbt_utils.surrogate_key(['dispatching_base_num', 'pickup_datetime']) }} as tripid,
