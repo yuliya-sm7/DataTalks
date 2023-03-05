@@ -1,0 +1,20 @@
+spark-submit --version
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.3.2
+
+SELECT count(*) FROM "fhvhv_data"."fhvhv_tripdata_2021-06"
+WHERE pickup_datetime::DATE = '2021-06-15'
+
+SELECT MAX(d) FROM (
+SELECT dropoff_datetime::timestamp - pickup_datetime::timestamp as d
+FROM "fhvhv_data"."fhvhv_tripdata_2021-06") a
+
+SELECT b."Zone", count(*)
+FROM "fhvhv_data"."fhvhv_tripdata_2021-06" a
+LEFT JOIN fhvhv_data.taxi_zone_lookup b
+ON a."PULocationID" = b."LocationID"
+GROUP BY 1
+ORDER BY 2 DESC
